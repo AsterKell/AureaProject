@@ -184,6 +184,8 @@ async function saveServer() {
 
         if (response.ok) {
 
+            alert("Servidor guardado correctamente");
+
             window.location.href = "configurar.html";
 
         } else {
