@@ -71,9 +71,13 @@ function register(event) {
 
 
 function logout() {
+
     localStorage.removeItem("token");
 
+    alert("Sesión cerrada");
+
     window.location.href = "login.html";
+
 }
 
 
