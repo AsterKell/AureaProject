@@ -173,14 +173,15 @@ async function saveServer() {
                 body: JSON.stringify({
                     nombre: nombre,
                     host: host,
-                    database: database,
-                    usuario: usuario,
-                    password: password
+                    name_bd: database,
+                    user_bd: usuario,
+                    pass_bd: password
                 })
             }
         );
 
         const data = await response.json();
+        console.log(JSON.stringify(data, null, 2));
 
         if (response.ok) {
 
