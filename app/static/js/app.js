@@ -44,7 +44,6 @@ async function login(event) {
     }
 }
 
-
 function register(event) {
     event.preventDefault();
 
