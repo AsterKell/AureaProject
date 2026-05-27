@@ -13,19 +13,19 @@ router = APIRouter(
 def crear_servidor(
     nombre: str,
     host: str,
-    puerto: int,
+    database: str,
     usuario: str,
     password: str,
     db: Session = Depends(get_db)
 ):
 
     nuevo = Servidor(
-        nombre=nombre,
-        host=host,
-        puerto=puerto,
-        usuario=usuario,
-        password=password
-    )
+    nombre=nombre,
+    host=host,
+    database=database,
+    usuario=usuario,
+    password=password
+)
 
     db.add(nuevo)
     db.commit()

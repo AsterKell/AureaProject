@@ -65,7 +65,7 @@ function register(event) {
 
     alert("Cuenta creada correctamente");
 
-    window.location.href = "Login.html";
+    window.location.href = "login.html";
 }
 
 
@@ -73,7 +73,7 @@ function register(event) {
 function logout() {
     localStorage.removeItem("token");
 
-    window.location.href = "Login.html";
+    window.location.href = "login.html";
 }
 
 
@@ -138,12 +138,63 @@ function testConnection() {
     alert("Conexión exitosa con SQL Server");
 }
 
+async function saveServer() {
 
+    const nombre = document.getElementById("nombre").value;
+    const host = document.getElementById("host").value;
+    const database = document.getElementById("database").value;
+    const usuario = document.getElementById("usuario").value;
+    const password = document.getElementById("password").value;
 
-function saveServer() {
-    alert("Servidor guardado correctamente");
+    if (
+        nombre === "" ||
+        host === "" ||
+        database === "" ||
+        usuario === "" ||
+        password === ""
+    ) {
+        alert("Completa todos los campos");
+        return;
+    }
 
-    window.location.href = "Configurar.html";
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:8000/api/servidores/",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nombre: nombre,
+                    host: host,
+                    database: database,
+                    usuario: usuario,
+                    password: password
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            alert("Servidor guardado correctamente");
+
+        } else {
+
+            alert(data.detail || "Error al guardar");
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Error de conexión");
+
+    }
 }
 
 
@@ -151,7 +202,7 @@ function saveServer() {
 function updateServer() {
     alert("Servidor actualizado correctamente");
 
-    window.location.href = "Configurar.html";
+    window.location.href = "configurar.html";
 }
 
 
@@ -162,6 +213,6 @@ function deleteServer() {
     if (confirmDelete) {
         alert("Servidor eliminado");
 
-        window.location.href = "Configurar.html";
+        window.location.href = "configurar.html";
     }
 }

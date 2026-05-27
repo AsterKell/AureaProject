@@ -6,11 +6,8 @@ class Servidor(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    nombre = Column(String(100), nullable=False)
-    host = Column(String(100), nullable=False)
-    puerto = Column(String(10), nullable=False)
-
-    usuario = Column(String(100), nullable=False)
-    password = Column(String(255), nullable=False)
-
-    database = Column(String(100), nullable=False)
+    nombre = Column(String)
+    host = Column(String)
+    database = Column(String)
+    usuario = Column(String)
+    password = Column(String)
